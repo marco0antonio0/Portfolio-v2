@@ -100,7 +100,7 @@ export function Hero() {
           <div className="relative overflow-hidden rounded-full">
             <span className="relative z-10 text-xs sm:text-sm font-mono text-foreground bg-card/80 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-primary/30 flex items-center gap-2">
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-primary animate-pulse" />
-              <span className="hidden sm:inline">Disponível para novos projetos</span>
+              <span className="hidden sm:inline">Powered by Marco A.</span>
               <span className="sm:hidden">Disponível</span>
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -170,15 +170,15 @@ export function Hero() {
               <Code2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary group-hover:scale-110 transition-transform" />
               <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
             </div>
-            <p className="text-xs sm:text-sm text-muted-foreground">Presidente</p>
-            <p className="font-semibold text-foreground text-sm sm:text-base">LADSOFT-UNAMA</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Desenvolvedor</p>
+            <p className="font-semibold text-foreground text-sm sm:text-base">Fullstack</p>
           </div>
 
           <div className="glass-effect rounded-xl p-5 sm:p-6 hover:bg-primary/5 transition-all group">
             <div className="flex items-center justify-center gap-3 mb-2">
               <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-accent group-hover:scale-110 transition-transform" />
             </div>
-            <p className="text-xs sm:text-sm text-muted-foreground">Estudante</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Academico</p>
             <p className="font-semibold text-foreground text-sm sm:text-base">Ciência da Computação</p>
           </div>
 

@@ -77,7 +77,7 @@ export function About() {
                 </div>
                 <div className="flex justify-between items-center p-3 rounded-lg hover:bg-primary/5 transition-colors">
                   <dt className="text-sm sm:text-base text-muted-foreground">Cargo</dt>
-                  <dd className="text-sm sm:text-base text-foreground font-semibold">Presidente LADSOFT-UNAMA</dd>
+                  <dd className="text-sm sm:text-base text-foreground font-semibold">Desenvolvedor Fullstack</dd>
                 </div>
               </dl>
             </div>
