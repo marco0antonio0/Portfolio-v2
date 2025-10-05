@@ -121,7 +121,7 @@ export function Hero() {
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground/80 max-w-3xl mx-auto text-pretty">
             Criando experiências web e mobile excepcionais com{" "}
             <span className="text-foreground font-medium">Next.js</span> e{" "}
-            <span className="text-foreground font-medium">Flutter</span>. Especialista em integrações de API e soluções
+            <span className="text-foreground font-medium">Flutter</span>. Dedicado a integrações de API e soluções
             inovadoras.
           </p>
         </div>
