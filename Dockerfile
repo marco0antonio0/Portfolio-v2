@@ -25,6 +25,6 @@ COPY --from=builder /app .
 
 # Expõe a porta padrão do Next.js
 EXPOSE 3000
-
+ 
 # Comando para rodar a aplicação
 CMD ["bun", "start"]
