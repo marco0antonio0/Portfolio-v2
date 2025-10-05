@@ -4,7 +4,7 @@ FROM oven/bun:1 AS builder
 WORKDIR /app
 
 # Copia os arquivos de dependência
-COPY package.json bun.lockb ./
+COPY package.json ./
 
 # Instala dependências
 RUN bun install
