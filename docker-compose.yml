@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  portfoliov2:
+    build: .
+    container_name: portfoliov2
+    ports:
+      - "3011:3000"
+    networks:
+      - proxy
+    restart: always
+  
+networks:
+  proxy:
+    external: true
+    name: traefik_proxy
