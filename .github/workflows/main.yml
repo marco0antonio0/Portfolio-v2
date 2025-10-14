@@ -40,15 +40,12 @@ jobs:
         echo "[$(date)] Usuário conectado: $(whoami)"
         echo "[$(date)] Acessando diretório alvo..."
         cd ${{ secrets.TARGET_DIR }}
-        echo "[$(date)] Diretório acessado: $(pwd)"
-        echo "[$(date)] Verificando conteúdo do diretório..."
-        ls -la
         echo "[$(date)] Iniciando build do Docker Compose..."
-        docker-compose build
+        timeout 1200 docker-compose build --progress=plain
         if [ $? -eq 0 ]; then
           echo "[$(date)] Build concluído com sucesso"
         else
-          echo "[$(date)] ERRO: Build falhou"
+          echo "[$(date)] ERRO: Build falhou ou timeout (20min)"
           exit 1
         fi
         echo "[$(date)] Iniciando limpeza do sistema Docker..."
