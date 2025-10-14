@@ -63,12 +63,25 @@ jobs:
           exit 1
         fi
         echo "[$(date)] Iniciando limpeza do sistema Docker..."
-        docker system prune -f
-        if [ $? -eq 0 ]; then
-          echo "[$(date)] Limpeza concluída com sucesso"
-        else
-          echo "[$(date)] ERRO: Limpeza falhou"
-          exit 1
+        # Tentar limpeza com retry para evitar conflito com operações simultâneas
+        MAX_RETRIES=3
+        RETRY_COUNT=0
+        CLEANUP_SUCCESS=false
+
+        while [ $RETRY_COUNT -lt $MAX_RETRIES ] && [ "$CLEANUP_SUCCESS" = false ]; do
+          echo "[$(date)] Tentativa de limpeza $(($RETRY_COUNT + 1))/$MAX_RETRIES..."
+          if docker system prune -f > /dev/null 2>&1; then
+            echo "[$(date)] Limpeza concluída com sucesso"
+            CLEANUP_SUCCESS=true
+          else
+            echo "[$(date)] Limpeza falhou, aguardando 10 segundos..."
+            sleep 10
+            RETRY_COUNT=$(($RETRY_COUNT + 1))
+          fi
+        done
+
+        if [ "$CLEANUP_SUCCESS" = false ]; then
+          echo "[$(date)] AVISO: Limpeza do Docker não foi concluída após $MAX_RETRIES tentativas, mas deploy continua..."
         fi
         echo "[$(date)] Limpando chaves SSH conhecidas e cache..."
         rm -f ~/.ssh/known_hosts
