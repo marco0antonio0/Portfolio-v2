@@ -1,0 +1,76 @@
+name: SSH to Cloudflare
+
+on: [push]
+
+jobs:
+  ssh-job:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install cloudflared
+      run: |
+        wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+        chmod +x cloudflared
+
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/runner.pem
+        chmod 600 ~/.ssh/runner.pem
+        export SSH_HOST=${{ secrets.SSH_HOST }}
+        cat > ~/.ssh/config <<EOF
+        Host runner-sh
+            HostName $SSH_HOST
+            User server
+            IdentityFile ~/.ssh/runner.pem
+            IdentitiesOnly yes
+            ProxyCommand ./cloudflared access ssh --hostname %h
+            ServerAliveInterval 60
+        EOF
+
+    - name: Run SSH commands in one session
+      run: |
+        ssh -o StrictHostKeyChecking=no runner-sh << 'EOF'
+        echo "[$(date)] Iniciando deploy no servidor..."
+        echo "[$(date)] Verificando conexão SSH..."
+        whoami
+        echo "[$(date)] Usuário conectado: $(whoami)"
+        echo "[$(date)] Acessando diretório alvo..."
+        cd ${{ secrets.TARGET_DIR }}
+        echo "[$(date)] Diretório acessado: $(pwd)"
+        echo "[$(date)] Verificando conteúdo do diretório..."
+        ls -la
+        echo "[$(date)] Iniciando build do Docker Compose..."
+        docker-compose build
+        if [ $? -eq 0 ]; then
+          echo "[$(date)] Build concluído com sucesso"
+        else
+          echo "[$(date)] ERRO: Build falhou"
+          exit 1
+        fi
+        echo "[$(date)] Iniciando limpeza do sistema Docker..."
+        docker system prune -f
+        if [ $? -eq 0 ]; then
+          echo "[$(date)] Limpeza concluída com sucesso"
+        else
+          echo "[$(date)] ERRO: Limpeza falhou"
+          exit 1
+        fi
+        echo "[$(date)] Limpando chaves SSH conhecidas e cache..."
+        rm -f ~/.ssh/known_hosts
+        ssh-keygen -R ${{ secrets.SSH_HOST }} 2>/dev/null || true
+        echo "[$(date)] Limpeza de chaves SSH concluída"
+        echo "[$(date)] Verificando status final..."
+        docker ps
+        echo "[$(date)] Deploy finalizado com sucesso!"
+        EOF
+
+    - name: Local cleanup
+      run: |
+        echo "[$(date)] Fazendo limpeza completa local no runner..."
+        rm -f cloudflared
+        rm -rf ~/.ssh
+        echo "[$(date)] Limpeza completa local concluída"
