@@ -31,7 +31,7 @@ jobs:
             ServerAliveInterval 60
         EOF
 
-    - name: Run SSH commands in one session
+    - name: Build And Deploy
       run: |
         ssh -o StrictHostKeyChecking=no runner-sh << 'EOF'
         echo "[$(date)] Iniciando deploy no servidor..."
@@ -40,12 +40,24 @@ jobs:
         echo "[$(date)] Usuário conectado: $(whoami)"
         echo "[$(date)] Acessando diretório alvo..."
         cd ${{ secrets.TARGET_DIR }}
+        echo "[$(date)] Atualizando repositório..."
+        git reset --hard origin/main
+        git pull origin main --no-edit
+        echo "[$(date)] Repositório atualizado"
         echo "[$(date)] Iniciando build do Docker Compose..."
         timeout 1200 docker-compose build --progress=plain
         if [ $? -eq 0 ]; then
           echo "[$(date)] Build concluído com sucesso"
         else
           echo "[$(date)] ERRO: Build falhou ou timeout (20min)"
+          exit 1
+        fi
+        echo "[$(date)] Iniciando containers..."
+        docker-compose up -d
+        if [ $? -eq 0 ]; then
+          echo "[$(date)] Containers iniciados com sucesso"
+        else
+          echo "[$(date)] ERRO: Falha ao iniciar containers"
           exit 1
         fi
         echo "[$(date)] Iniciando limpeza do sistema Docker..."
