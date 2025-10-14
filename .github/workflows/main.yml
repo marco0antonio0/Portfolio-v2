@@ -52,6 +52,8 @@ jobs:
           echo "[$(date)] ERRO: Build falhou ou timeout (20min)"
           exit 1
         fi
+        echo "[$(date)] Parando containers antigos..."
+        docker-compose down
         echo "[$(date)] Iniciando containers..."
         docker-compose up -d
         if [ $? -eq 0 ]; then
