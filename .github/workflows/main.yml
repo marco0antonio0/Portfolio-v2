@@ -3,7 +3,7 @@ name: SSH to Cloudflare
 on: [push]
 
 jobs:
-  ssh-job:
+  Deploy:
     runs-on: ubuntu-latest
     environment: production
     steps:
