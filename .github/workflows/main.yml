@@ -75,7 +75,7 @@ jobs:
         ssh-keygen -R ${{ secrets.SSH_HOST }} 2>/dev/null || true
         echo "[$(date)] Limpeza de chaves SSH concluída"
         echo "[$(date)] Verificando status final..."
-        docker ps
+        docker ps --format "table {{.Names}}\t{{.Status}}"
         echo "[$(date)] Deploy finalizado com sucesso!"
         EOF
 
