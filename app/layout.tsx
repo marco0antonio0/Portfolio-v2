@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marco Antonio - Desenvolvedor Full-Stack | Next.js, Flutter, APIs",
+    title: "Marco Antonio - Desenvolvedor Full-Stack | Next.js,Flutter,APIs",
     description:
       "Portfolio de Marco Antonio, desenvolvedor de software full-stack em Next.js, Flutter, desenvolvimento web e mobile, integrações de API e soluções tecnológicas inovadoras.",
     images: ["https://nextlab.cloud/imagelink.png"],
