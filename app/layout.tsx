@@ -26,9 +26,6 @@ export const metadata: Metadata = {
     "soluções digitais"
   ],
   robots: "index, follow",
-  verification: {
-    google: "2SH88IBpTtNJt2R2mgWSewpgc6eDJ4N-EdMhMKs4GLA"
-  },
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
@@ -67,6 +64,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="dark">
+      <head>
+        <meta name="google-site-verification" content="2SH88IBpTtNJt2R2mgWSewpgc6eDJ4N-EdMhMKs4GLA" />
+      </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
