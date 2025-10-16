@@ -25,8 +25,10 @@ export const metadata: Metadata = {
     "tecnologia",
     "soluções digitais"
   ],
-  generator: "v0.app",
   robots: "index, follow",
+  verification: {
+    google: "2SH88IBpTtNJt2R2mgWSewpgc6eDJ4N-EdMhMKs4GLA"
+  },
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
