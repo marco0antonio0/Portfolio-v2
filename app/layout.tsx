@@ -7,14 +7,54 @@ import "./globals.css"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
-  title: "Marco Antonio - Desenvolvedor de Software",
+  title: "Marco Antonio - Desenvolvedor Full-Stack | Next.js, Flutter, APIs",
   description:
-    "Portfolio de Marco Antonio, desenvolvedor full-stack especializado em Next.js, Flutter e integrações de API",
+    "Portfolio de Marco Antonio, desenvolvedor de software full-stack em Next.js, Flutter, desenvolvimento web e mobile, integrações de API e soluções tecnológicas inovadoras. Conheça meus projetos e habilidades em programação.",
+  keywords: [
+    "desenvolvedor",
+    "desenvolvedor de software",
+    "desenvolvedor full-stack",
+    "Next.js",
+    "Flutter",
+    "desenvolvimento web",
+    "desenvolvimento mobile",
+    "integrações API",
+    "portfolio desenvolvedor",
+    "dev",
+    "programação",
+    "tecnologia",
+    "soluções digitais"
+  ],
   generator: "v0.app",
+  robots: "index, follow",
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
     apple: "/logo.png",
+  },
+  openGraph: {
+    title: "Marco Antonio - Desenvolvedor Full-Stack | Next.js, Flutter, APIs",
+    description:
+      "Portfolio de Marco Antonio, desenvolvedor de software full-stack em Next.js, Flutter, desenvolvimento web e mobile, integrações de API e soluções tecnológicas inovadoras.",
+    url: "https://nextlab.cloud/",
+    siteName: "Marco Antonio Portfolio",
+    images: [
+      {
+        url: "https://nextlab.cloud/image-link.png",
+        width: 1200,
+        height: 630,
+        alt: "Marco Antonio - Desenvolvedor Full-Stack",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marco Antonio - Desenvolvedor Full-Stack | Next.js, Flutter, APIs",
+    description:
+      "Portfolio de Marco Antonio, desenvolvedor de software full-stack em Next.js, Flutter, desenvolvimento web e mobile, integrações de API e soluções tecnológicas inovadoras.",
+    images: ["https://nextlab.cloud/image-link.png"],
   },
 }
 
