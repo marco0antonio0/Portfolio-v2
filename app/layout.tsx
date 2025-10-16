@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     siteName: "Marco Antonio Portfolio",
     images: [
       {
-        url: "https://nextlab.cloud/image-link.png",
-        width: 1200,
-        height: 630,
+        url: "https://nextlab.cloud/imagelink.png",
+        width: 1340,
+        height: 954,
         alt: "Marco Antonio - Desenvolvedor Full-Stack",
       },
     ],
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Marco Antonio - Desenvolvedor Full-Stack | Next.js, Flutter, APIs",
     description:
       "Portfolio de Marco Antonio, desenvolvedor de software full-stack em Next.js, Flutter, desenvolvimento web e mobile, integrações de API e soluções tecnológicas inovadoras.",
-    images: ["https://nextlab.cloud/image-link.png"],
+    images: ["https://nextlab.cloud/imagelink.png"],
   },
 }
 
