@@ -13,4 +13,4 @@ services:
 networks:
   proxy:
     external: true
-    name: traefik_proxy
+    name: nginx_proxy
